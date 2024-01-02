@@ -1,0 +1,21 @@
+.inputStyle:focus,
+.inputStyle:active {
+  outline: none;
+  border-color: rgb(0, 115, 234);
+}
+.inputStyle:hover {
+  border-color: rgb(50, 51, 56);
+}
+
+.inputStyle {
+  border-color: rgb(195, 198, 212);
+  background-color: transparent;
+  border: 1px solid;
+  border-radius: 4px;
+  color: rgb(50, 51, 56);
+  padding: 8px 16px;
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
