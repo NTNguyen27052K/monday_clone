@@ -6,7 +6,7 @@ import SignLayout from "../../../layout/sign/SignLayout";
 const InvitationTwo = () => {
   return (
     <SignLayout
-      componentLeft={InvitationTwoL}
+      componentLeft={<InvitationTwoL />}
       componentRight={<img className="w-full h-full" src={imgInvitationTwo} />}
     />
   );
