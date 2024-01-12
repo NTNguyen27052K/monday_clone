@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 const useDeviceType = () => {
-const [deviceType, setDeviceType] = useState("");
-useEffect(() => {
-const handleResize = () => {
-const width = window.innerWidth;
+  const [deviceType, setDeviceType] = useState();
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
 
-      if (width >= 768) {
-        setDeviceType("desktop");
-      } else {
-        setDeviceType("phone");
-      }
+      width >= 768 ? setDeviceType("desktop") : setDeviceType("phone");
     };
+
     // Thực hiện lấy kích thước màn hình ban đầu
     handleResize();
 
@@ -22,9 +19,8 @@ const width = window.innerWidth;
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-
-}, []);
-return deviceType;
+  }, [deviceType]);
+  return deviceType;
 };
 
 export default useDeviceType;
