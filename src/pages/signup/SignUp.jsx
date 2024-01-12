@@ -2,28 +2,31 @@ import React from "react";
 import imgSignUp from "../../assets/img/monday_logup.png";
 import { Divider, Input } from "antd";
 import googleIcon from "../../assets/img/google-icon.png";
+import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
     },
     onSubmit: (values) => {
-      console.log("aa");
-      console.log(values);
+      navigate("/signup");
     },
     validationSchema: Yup.object({
       email: Yup.string().email("Invalid email format").required("Empty"),
     }),
   });
+
   const { handleSubmit, handleChange, handleBlur, values, errors, touched } =
     formik;
   return (
     <form
       onSubmit={handleSubmit}
-      className="h-screen w-screen xl:h-screen xl:w-screen"
+      className="h-screen w-screen xl:h-screen xl:w-screen xl:flex"
     >
       {/* basis-7/12 */}
       <div className="signUpLeft xl:basis-7/12 flex justify-center items-center px-3 w-full h-full">
