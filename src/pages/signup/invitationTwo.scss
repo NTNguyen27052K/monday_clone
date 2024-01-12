@@ -1,0 +1,23 @@
+:where(.css-dev-only-do-not-override-gzal6t)[class^="ant-radio"]
+  [class^="ant-radio"],
+:where(.css-dev-only-do-not-override-gzal6t)[class*=" ant-radio"]
+  [class^="ant-radio"],
+:where(.css-dev-only-do-not-override-gzal6t)[class^="ant-radio"]
+  [class*=" ant-radio"],
+:where(.css-dev-only-do-not-override-gzal6t)[class*=" ant-radio"]
+  [class*=" ant-radio"] {
+  border: 1px solid #c3c6d4;
+}
+:where(.css-dev-only-do-not-override-gzal6t).ant-radio-wrapper {
+  padding: 8px 16px;
+  border-radius: 32px;
+  color: #676879;
+  font-weight: 300;
+  background-color: #fff;
+  font-size: 14px;
+  //   margin-top: 16px;
+  //   margin-left: 8px;
+  //   margin-right: 0px;
+  //   margin-bottom: 0px;
+  margin: 16px 0 0 8px;
+}
