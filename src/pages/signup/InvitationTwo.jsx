@@ -6,12 +6,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./invitationTwo.scss";
 import useDeviceType from "../../customHooks/useDeviceType";
+import InvitationMobile from "./InvitationMobile";
 
 const InvitationTwo = () => {
-  useEffect(() => {
-    console.log("a");
-  }, []);
-
   const formik = useFormik({
     initialValues: {
       whatBring: "",
@@ -121,19 +118,19 @@ const InvitationTwo = () => {
   ];
   const deviceType = useDeviceType();
   return (
-    <form onSubmit={handleSubmit}>
+    <div onSubmit={handleSubmit}>
       <div className="flex flex-row h-screen">
-        <div className="basis-7/12">
-          <div className="account-setUp_question flex flex-col px-[128px] py-[64px] h-full w-full">
+        <div className="basis-7/12 hidden xl:block">
+          <div className="account-setUp_question flex flex-col  px-[128px] py-[64px] h-full w-full">
             {/* acq_header */}
-            <div className="acq_header flex-none">
+            <div className="acq_header flex-none hidden xl:block">
               <div className="acq_header-container mb-16">
                 <div className="acq_header-logo">
                   <img src={logoFullBig} className="h-6" />
                 </div>
               </div>
             </div>
-            {/* acq_content */}
+            {/* acq_content 1 */}
             <div className="acq_content grow">
               <div className="acq_content-container">
                 {/* first question */}
@@ -196,18 +193,25 @@ const InvitationTwo = () => {
               <div className="acq_action-left"></div>
               <div className="acq_action-right">
                 <div>
-                  <button>Continue</button>
+                  <button
+                    type="submit"
+                    className="btn1 bg-[#0073ea] w-full mt-12 text-white text-base h-12 px-6 py-3"
+                  >
+                    Continue
+                    <i className="fa-solid fa-chevron-right fa-xs ml-2"></i>
+                  </button>
                 </div>
               </div>
               <div></div>
             </div>
           </div>
         </div>
-        <div className="basis-5/12">
+        <div className="basis-5/12 hidden xl:block">
           <img className="w-full h-full" src={imgInvitationTwo} />
         </div>
+        <InvitationMobile />
       </div>
-    </form>
+    </div>
   );
 };
 

@@ -11,7 +11,7 @@
 * {
   font-family: "Changa", sans-serif;
   font-family: "Fira Sans", sans-serif;
-  font-family: "Roboto", sans-serif;
+  font-family: "Poppins", "Roboto", sans-serif;
   box-sizing: border-box;
 }
 .titles-wrapper {
@@ -45,4 +45,13 @@
 .title1 {
   font: var(--font-h1-normal);
   letter-spacing: var(--letter-spacing-h1-normal);
+}
+.mobile-question-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #c5c7d0;
+  border-radius: 100px;
+  margin-bottom: 16px;
+  height: 64px;
 }
