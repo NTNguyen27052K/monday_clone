@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
 import imgInvitationTwo from "../../assets/img/set-up-your-account.png";
 import logoFullBig from "../../assets/img/logo-full-big.png";
-import { Radio, Button } from "antd";
+import { Radio } from "antd";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import "./invitationTwo.scss";
 import useDeviceType from "../../customHooks/useDeviceType";
-import InvitationMobile from "./InvitationMobile";
+import InvitationMobile from "./invitationMobile/InvitationMobile";
+import { useNavigate } from "react-router-dom";
 
 const InvitationTwo = () => {
+  const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
       whatBring: "",
@@ -16,6 +18,7 @@ const InvitationTwo = () => {
     },
     onSubmit: (values) => {
       console.log(values);
+      navigate("/invitationThree");
     },
     handleChange: (values) => {
       console.log(values);
@@ -28,11 +31,6 @@ const InvitationTwo = () => {
     formik;
 
   const [value, setValue] = useState("");
-
-  const onChange = ({ target: { value } }) => {
-    setValue(value);
-    handleChange({ target: { name: "work", value } });
-  };
 
   const options = [
     {
@@ -117,8 +115,28 @@ const InvitationTwo = () => {
     },
   ];
   const deviceType = useDeviceType();
+
+  const renderQuestion = (options) => {
+    return (
+      <>
+        <h2 className="font-medium text-2xl mb-2">
+          What best describes your current role?
+        </h2>
+        <div className="radio-buttons-container ">
+          <Radio.Group
+            className="flex flex-wrap"
+            name="whatDescribes"
+            onChange={handleChange}
+            options={options}
+            value={values.whatDescribes}
+          />
+        </div>
+      </>
+    );
+  };
+
   return (
-    <div onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div className="flex flex-row h-screen">
         <div className="basis-7/12 hidden xl:block">
           <div className="account-setUp_question flex flex-col  px-[128px] py-[64px] h-full w-full">
@@ -151,40 +169,16 @@ const InvitationTwo = () => {
                   </div>
                 </div>
                 {/* second question */}
-                <div className="acq_content-title mt-16">
-                  <h2 className="font-medium text-2xl mb-2">
-                    What best describes your current role?
-                  </h2>
-                  <div className="radio-buttons-container ">
-                    {/* work question */}
-                    {values.whatBring === "work" ? (
-                      <Radio.Group
-                        className="flex flex-wrap"
-                        name="whatDescribes"
-                        onChange={handleChange}
-                        options={optionsWork}
-                        value={values.whatDescribes}
-                      />
-                    ) : values.whatBring === "school" ? (
-                      <Radio.Group
-                        className="flex flex-wrap"
-                        name="whatDescribes"
-                        onChange={handleChange}
-                        options={optionsSchool}
-                        value={values.whatDescribes}
-                      />
-                    ) : values.whatBring === "nonprofit" ? (
-                      <Radio.Group
-                        className="flex flex-wrap"
-                        name="whatDescribes"
-                        onChange={handleChange}
-                        options={optionsNonprofit}
-                        value={values.whatDescribes}
-                      />
-                    ) : (
-                      <></>
-                    )}
-                  </div>
+                <div className="acq_content-title2 mt-16">
+                  {values.whatBring === "work" ? (
+                    renderQuestion(optionsWork)
+                  ) : values.whatBring === "school" ? (
+                    renderQuestion(optionsSchool)
+                  ) : values.whatBring === "nonprofit" ? (
+                    renderQuestion(optionsNonprofit)
+                  ) : (
+                    <></>
+                  )}
                 </div>
               </div>
             </div>
@@ -195,10 +189,16 @@ const InvitationTwo = () => {
                 <div>
                   <button
                     type="submit"
-                    className="btn1 bg-[#0073ea] w-full mt-12 text-white text-base h-12 px-6 py-3"
+                    className={
+                      values.whatBring && values.whatDescribes
+                        ? "btn1"
+                        : "btn1Disabled"
+                    }
                   >
                     Continue
-                    <i className="fa-solid fa-chevron-right fa-xs ml-2"></i>
+                    <span className="w-5 h-5 ml-2">
+                      <i className="fa-solid fa-chevron-right fa-xs"></i>
+                    </span>
                   </button>
                 </div>
               </div>
@@ -209,9 +209,9 @@ const InvitationTwo = () => {
         <div className="basis-5/12 hidden xl:block">
           <img className="w-full h-full" src={imgInvitationTwo} />
         </div>
-        <InvitationMobile />
+        {deviceType === "phone" ? <InvitationMobile /> : <></>}
       </div>
-    </div>
+    </form>
   );
 };
 

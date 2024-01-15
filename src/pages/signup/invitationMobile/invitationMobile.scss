@@ -1,0 +1,13 @@
+.disableStep {
+  pointer-events: none;
+  color: #676879;
+  opacity: 0.6;
+  font-size: 16px;
+  line-height: 23px;
+}
+.unableStep {
+  font-size: 16px;
+  line-height: 23px;
+  flex-shrink: 0;
+  color: #323338;
+}

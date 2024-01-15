@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Progress } from "antd";
-import logoBig from "../../assets/img/logo-full-big.png";
+import logoBig from "../../../assets/img/logo-full-big.png";
+import "./invitationMobile.scss";
 
 const InvitationMobile = () => {
   const question_1 = [
@@ -260,11 +261,17 @@ const InvitationMobile = () => {
         prevSurvey.percent - percentStep,
         percentStep
       );
-
-      return {
-        ...prevSurvey,
-        percent: limitedPercent,
-      };
+      console.log(prevSurvey);
+      return Math.abs(limitedPercent - mathPercent(2)) < tolerance
+        ? {
+            ...prevSurvey,
+            percent: limitedPercent,
+            question_2: "",
+          }
+        : {
+            ...prevSurvey,
+            percent: limitedPercent,
+          };
     });
   };
   const renderQuestion = (title, options, property) => {
@@ -311,163 +318,66 @@ const InvitationMobile = () => {
   const mathPercent = (a) => {
     return percentStep * a;
   };
-  console.log(survey);
+
   return (
-    <div className="block xl:hidden ">
-      <div className="mobile-container h-screen w-screen">
-        {/* mobile-stepper */}
-        <div className="mobile-stepper">
-          <div className="mobile-stepper-component flex items-center mb-10 px-6 pt-6">
-            {/* back-button */}
-            <div
-              className="back-button text-[#676879] opacity-60 text-[16px] leading-8 font-light"
-              onClick={back}
-            >
-              Back
-            </div>
-            {/* Progress */}
-            <Progress
-              percent={survey.percent}
-              showInfo={false}
-              strokeColor="#1677ff"
-              className="mx-4 my-0"
-            />
-            {/* skip-button */}
-            <div
-              className="skip-button text-[#676879] opacity-60 text-[16px] leading-8 font-light"
-              onClick={next}
-            >
-              Skip
-            </div>
+    <div className="mobile-container h-screen w-screen">
+      {/* mobile-stepper */}
+      <div className="mobile-stepper">
+        <div className="mobile-stepper-component flex items-center mb-10 px-6 pt-6">
+          {/* back-button */}
+          <div
+            className={
+              survey.percent === percentStep
+                ? "back-button disableStep"
+                : "back-button unableStep"
+            }
+            onClick={back}
+          >
+            Back
+          </div>
+          {/* Progress */}
+          <Progress
+            percent={survey.percent}
+            showInfo={false}
+            strokeColor="#1677ff"
+            className="mx-4 my-0"
+          />
+          {/* skip-button */}
+          <div
+            className="skip-button text-[#323338] text-[16px] leading-8"
+            onClick={next}
+          >
+            Skip
           </div>
         </div>
-        {/* mobile-question 1 */}
-        {Math.abs(survey.percent - mathPercent(1)) < tolerance ? (
-          renderQuestion(
-            "What will you be using monday.com for?",
-            question_1,
-            "question_1"
-          )
-        ) : Math.abs(survey.percent - mathPercent(2)) < tolerance ? (
-          renderQuestion("What best describes you?", question_2, "question_2")
-        ) : Math.abs(survey.percent - mathPercent(3)) < tolerance ? (
-          renderQuestion(
-            " What is the main thing you want to manage?",
-            question_3,
-            "question_3"
-          )
-        ) : Math.abs(survey.percent - mathPercent(4)) < tolerance ? (
-          renderQuestion("What are you working on?", question_4, "question_4")
-        ) : Math.abs(survey.percent - mathPercent(5)) < tolerance ? (
-          renderQuestion("What's your team size?", question_5, "question_5")
-        ) : Math.abs(survey.percent - mathPercent(6)) < tolerance ? (
-          renderQuestion("What's your team size?", question_6, "question_6")
-        ) : (
-          <></>
-        )}
-        {/* mobile-question 2.5  */}
-        {/* {survey.percent === percentStep * 2 ? (
-          <div className="mobile-question-work">
-            <div className="mobile-question-title px-[30px] text-left">
-              <h1 className="text-2xl tracking-[-0.1px] font-medium my-4">
-                What best describes you?
-              </h1>
-            </div>
-            <div className="mobile-question-option px-6 pt-4 ">
-              {optionsWork.map((option, index) => {
-                return (
-                  <div
-                    className="mobile-question-item"
-                    key={index}
-                    onClick={() =>
-                      setSurvey({
-                        ...survey,
-                        whatdescribes: option.value,
-                        percent: survey.percent + percentStep,
-                      })
-                    }
-                  >
-                    <span className="text-[18px] leading-[31px] text-[#323338]">
-                      {option.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ) : (
-          <></>
-        )} */}
-        {/* mobile-question 5 */}
-        {/* {survey.percent === percentStep * 3 ? (
-          <div className="mobile-question-work">
-            <div className="mobile-question-title px-[30px] text-left">
-              <h1 className="text-2xl tracking-[-0.1px] font-medium my-4">
-                What is the main thing you want to manage?
-              </h1>
-            </div>
-            <div className="mobile-question-option px-6 pt-4 ">
-              {optionsPersonal.map((option, index) => {
-                return (
-                  <div
-                    className="mobile-question-item"
-                    key={index}
-                    onClick={() =>
-                      setSurvey({
-                        ...survey,
-                        manage: option.value,
-                        percent: survey.percent + percentStep,
-                      })
-                    }
-                  >
-                    <span className="text-[18px] leading-[31px] text-[#323338]">
-                      {option.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ) : (
-          <></>
-        )} */}
-        {/* mobile-question 5-1 */}
-        {/* {survey.percent === percentStep * 4 ? (
-          <div className="mobile-question-work">
-            <div className="mobile-question-title px-[30px] text-left">
-              <h1 className="text-2xl tracking-[-0.1px] font-medium my-4">
-                What are you working on?
-              </h1>
-            </div>
-            <div className="mobile-question-option px-6 pt-4 ">
-              {optionsWorkingOn.map((option, index) => {
-                return (
-                  <div
-                    className="mobile-question-item"
-                    key={index}
-                    onClick={() =>
-                      setSurvey({
-                        ...survey,
-                        workingOn: option.value,
-                        percent: survey.percent + percentStep,
-                      })
-                    }
-                  >
-                    <span className="text-[18px] leading-[31px] text-[#323338]">
-                      {option.label}
-                    </span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ) : (
-          <></>
-        )} */}
-        {/* mobile-logo */}
-        <div className="mobile-logo fixed bottom-0 px-6 py-2">
-          <img className="h-6" src={logoBig} alt="logo" />
-        </div>
+      </div>
+      {/* mobile-question 1 */}
+      {Math.abs(survey.percent - mathPercent(1)) < tolerance ? (
+        renderQuestion(
+          "What will you be using monday.com for?",
+          question_1,
+          "question_1"
+        )
+      ) : Math.abs(survey.percent - mathPercent(2)) < tolerance ? (
+        renderQuestion("What best describes you?", question_2, "question_2")
+      ) : Math.abs(survey.percent - mathPercent(3)) < tolerance ? (
+        renderQuestion(
+          " What is the main thing you want to manage?",
+          question_3,
+          "question_3"
+        )
+      ) : Math.abs(survey.percent - mathPercent(4)) < tolerance ? (
+        renderQuestion("What are you working on?", question_4, "question_4")
+      ) : Math.abs(survey.percent - mathPercent(5)) < tolerance ? (
+        renderQuestion("What's your team size?", question_5, "question_5")
+      ) : Math.abs(survey.percent - mathPercent(6)) < tolerance ? (
+        renderQuestion("What's your team size?", question_6, "question_6")
+      ) : (
+        <></>
+      )}
+      {/* mobile-logo */}
+      <div className="mobile-logo fixed bottom-0 px-6 py-2">
+        <img className="h-6" src={logoBig} alt="logo" />
       </div>
     </div>
   );
