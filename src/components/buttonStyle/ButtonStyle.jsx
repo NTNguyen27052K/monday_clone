@@ -1,7 +1,7 @@
 import React from "react";
-
-const ButtonStyle = () => {
-  return <button>ButtonStyle</button>;
+import "./buttonStyle.scss";
+const ButtonStyle = ({ text }) => {
+  return <button className="btnType">{text}</button>;
 };
 
 export default ButtonStyle;

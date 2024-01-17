@@ -6,6 +6,7 @@ import InvitationThree from "./pages/signup/InvitationThree";
 import Invitationfour from "./pages/signup/Invitationfour";
 import InvitationFive from "./pages/signup/InvitationFive";
 import InvitationSix from "./pages/signup/InvitationSix";
+import InviteMembers from "./pages/inviteMembers/InviteMembers";
 // import InvitationTwo from "./pages/signup/invitationTwo/InvitationTwo";
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/invitationFour" element={<Invitationfour />} />
         <Route path="/invitationFive" element={<InvitationFive />} />
         <Route path="/invitationSix" element={<InvitationSix />} />
+        <Route path="/inviteMembers" element={<InviteMembers />} />
 
         {/* <Route path="/sign_up_new" element={<SignUpNew />} />
         <Route path="/invitation" element={<Invitation />} />
