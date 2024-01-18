@@ -43,7 +43,7 @@ export const InputInvite = ({
       style={{ width: "117px", height: "38px" }}
       options={options}
       optionRender={optionRender}
-      open={true}
+      // open={true}
       className={`role_select`}
       onClick={() => {
         setTransformIcon(!transformIcon);

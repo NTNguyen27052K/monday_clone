@@ -12,7 +12,12 @@ const InviteMembers = () => {
   const formik = useFormik({
     initialValues: {
       // emailInvite: "",
-      roleInvite: "",
+      arrInvite: [
+        {
+          email: "",
+          role: "",
+        },
+      ],
     },
     onSubmit: (values) => {
       console.log(values);
